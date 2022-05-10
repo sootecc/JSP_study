@@ -21,6 +21,7 @@
 							//실행중인 자바 프로그램에서 클래스와 인터페이스를 표현(정보를 담는)클래스
 							// Class의 static 메소드인 forName은 클래스의 이름을 매개변수로 받아서 Class 객체를 리턴해준다.
 	conn = DriverManager.getConnection(url,"hr","hr");		//url, id, pw, conn 객체에 넣어줘야 한다.
+	//매번 들어가는 코드들이기 때문에 page include로 사용하면 코드 중복을 피할 수 있다.
 %>
 			
 

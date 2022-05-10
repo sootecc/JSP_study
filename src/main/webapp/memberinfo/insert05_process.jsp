@@ -20,25 +20,28 @@
 	String name = request.getParameter("name");
 	String email =  request.getParameter("email");
 	
-	Statement stmt = null;		// Statement 객체: SQL Query 구문을 담아서 실행하는 객체 
+	PreparedStatement pstmt = null;		 
 	
-	String sql2 =  String.format("insert into mbTbl(idx,id,pass,name ,email) values(seq_mbTbl_idx.nextval,'%s','%s','%s','%s')", id,passwd,name,email);
+	String sql =  String.format("insert into mbTbl(idx,id,pass,name ,email) values(seq_mbTbl_idx.nextval,?,?,?,?)");
 	
 	try {
 		//String sql = "insert into mbTbl(idx,id,pass,name ,email) values(seq_mbTbl_idx.nextval,'"+id+"','"+passwd+"','"+name+"','"+email+"')";
-		stmt = conn.createStatement();	//connection 객체를 통해서 statement 객체 생성 -> conn은 dbconn_oracle.jsp에서 가져온 것/ 형식 외워두기
-		stmt.executeUpdate(sql2);		//statement 객체를 통해서 sql을 실행함
-			//stmt.executeUpdate(sql): sql에 insert, update, delete (DML)문이 온다.
-			//stmt.executeQuery(sql): sql에 select 문이 온다. 결과를 Resultset 객체로 반환
+		pstmt = conn.prepareStatement(sql);	// PreparedStatement 객체 생성시에 sql문을 넣는다.
+		pstmt.setString(1,id);
+		pstmt.setString(2,passwd);
+		pstmt.setString(3,name);
+		pstmt.setString(4,email);
+		pstmt.executeUpdate();
+		
 		out.println("테이블 삽입에 성공했습니다.");
-		out.println(sql2);
+		out.println(sql);
 		
 	}catch(Exception e){
 		out.println("mbTbl 테이블 삽입을 실패했습니다.");
 		out.println(e.getMessage());
 	}finally{
-		if(stmt != null)
-			stmt.close();
+		if(pstmt != null)
+			pstmt.close();
 		if(conn != null)	
 			conn.close();
 	}
@@ -52,8 +55,8 @@
 <%= name  %><p>			
 <%= email %><p>
 
-<%=sql2 %><p><p>		<!-- html 블락에서 출력할 때 -->
-<% out.println(sql2); %><!-- JSP 블락에서 출력할 때 -->
+<%=sql %><p><p>		<!-- html 블락에서 출력할 때 -->
+<% out.println(sql); %><!-- JSP 블락에서 출력할 때 -->
 	
 	
 </body>
