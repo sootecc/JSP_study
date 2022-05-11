@@ -50,7 +50,7 @@
 			//stmt.executeQuery(sql)	: select한 결과를 ResultSet 객체에 저장해야함 
 			//stmt.executeUpdate(sql)	: insert, update, delete
 		while(rs.next()){
-			String id = rs.getString("id");
+			String id = rs.getString("id");		// table 컬럼 이름, post로 넘어온 변수아님에 주의
 			String pass = rs.getString("pass");
 			String name = rs.getString("name");
 			String email = rs.getString("email");

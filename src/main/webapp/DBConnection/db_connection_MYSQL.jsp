@@ -25,7 +25,7 @@
 		conn = DriverManager.getConnection(url,"root","1234");		//url, id, pw, conn 객체에 넣어줘야 한다.
 	
 		connect = true;
-		conn.close();	
+		
 	}
 	catch(Exception e){
 		connect = false;

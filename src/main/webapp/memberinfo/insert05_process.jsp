@@ -22,9 +22,11 @@
 	
 	PreparedStatement pstmt = null;		 
 	
-	String sql =  String.format("insert into mbTbl(idx,id,pass,name ,email) values(seq_mbTbl_idx.nextval,?,?,?,?)");
+	String sql = null;
+	
 	
 	try {
+		sql =  String.format("insert into mbTbl(idx,id,pass,name ,email) values(seq_mbTbl_idx.nextval,?,?,?,?)");
 		//String sql = "insert into mbTbl(idx,id,pass,name ,email) values(seq_mbTbl_idx.nextval,'"+id+"','"+passwd+"','"+name+"','"+email+"')";
 		pstmt = conn.prepareStatement(sql);	// PreparedStatement 객체 생성시에 sql문을 넣는다.
 		pstmt.setString(1,id);

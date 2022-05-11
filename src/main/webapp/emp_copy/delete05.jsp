@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Update를 통한 데이터 수정</title>
+<title>Insert title here</title>
 </head>
 <body>
-	
-	<form method = "post" action = "update05_process.jsp">  <!-- action = "insert01_process.jsp" DB에 저장할 것을 호출 -->
+
+	<form method = "post" action = "delete05_process.jsp">  <!-- action = "insert01_process.jsp" DB에 저장할 것을 호출 -->
 		<p> 사원번호: <input type = "text" name = "eno">			
 		<p> 사원이름: <input type = "text" name = "ename">
 		<p> 직업: <input type = "text" name = "job">
@@ -21,6 +21,24 @@
 	</form>
 		
 	
-	
+
+
+
+
+
 </body>
 </html>
+
+
+
+<!-- 
+	method = "post"
+	 -- http 헤더 앞에 값을 넣어 전송, 보안이 강하다. 전송용량의 제한이 없다. 
+	 -- 파일 전송할 때 사용
+	
+	method = "get"
+	 -- http 헤더 뒤에 값을 넣어 전송, 버안에 취약하다. 전송용량의 제한을 갖고 있다. 
+	 -- 게시판을 만들 때 사용(post도 가능함)
+ -->
+ 
+ 

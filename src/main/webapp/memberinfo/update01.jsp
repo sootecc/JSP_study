@@ -13,7 +13,7 @@
 		<p> 패스워드: <input type = "password" name = "passwd">
 		<p> 이름: <input type = "text" name = "name">
 		<p> 이메일: <input type = "text" name = "email">
-		<p> <input type = "submit" values = "전송">
+		<p> <input type = "submit" value = "전송">
 		
 	</form>
 	
