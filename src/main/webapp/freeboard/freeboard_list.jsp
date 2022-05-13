@@ -6,9 +6,9 @@
 <TITLE>게시판</TITLE>
 <link href="freeboard.css" rel="stylesheet" type="text/css">
 <SCRIPT language="javascript">
-	function check() {
+	function check() {		
 		with (document.msgsearch) {
-			if (sval.value.length == 0) {
+			if (sval.value.length == 0) {	//검색함수도 여기서 처리, 검색에에 아무것도 넣지 않고 검색 누르면 요거
 				alert("검색어를 입력해 주세요!!");
 				sval.focus();
 				return false;
@@ -16,12 +16,12 @@
 			document.msgsearch.submit();
 		}
 	}
-	function rimgchg(p1, p2) {
+	function rimgchg(p1, p2) {			//Document 객체는 웹 페이지 그 자체를 의미합니다. 웹 페이지에 존재하는 HTML 요소에 접근하고자 할 때는 반드시 Document 객체부터 시작해야 합니다.
 		if (p2 == 1)
 			document.images[p1].src = "image/open.gif";
 		else
-			document.images[p1].src = "image/arrow.gif";
-	}
+			document.images[p1].src = "image/arrow.gif";		// 얘는 답글 이미지라서 arrow
+	}	//이미지 바뀌는 것도 함수로 만들어서 토글시켜준다.
 
 	function imgchg(p1, p2) {
 		if (p2 == 1)
@@ -100,7 +100,7 @@
 			int priorpage = where - 1;			// 이전페이지: 현재페이지 - 1
 			int startrow = 0;					//DataBase에서 select 한 레코드 시작 번호
 			int endrow = 0;						//DataBase에서 select한 레코드 마지막 번호
-			int maxrows = 3;					//출력할 레코드 수 
+			int maxrows = 4;					//출력할 레코드 수 
 			int totalrows = 0;					//총 레코드 개수
 			int totalpages = 0;					//총 페이지 개수
 			//페이징 처리 마지막 부분
@@ -158,7 +158,7 @@
 						name.addElement(rs.getString("name"));
 						email.addElement(rs.getString("email"));
 						String idate = rs.getString("inputdate");
-						idate = idate.substring(0, 8);
+						idate = idate.substring(0, 8);		//데이터베이스에서 년 월 일
 						inputdate.addElement(idate);
 						subject.addElement(rs.getString("subject"));
 						rcount.addElement(new Integer(rs.getInt("readcount")));
@@ -166,25 +166,25 @@
 						
 					} while (rs.next());
 					
-					totalrows = name.size();						//name Vector에 저장된 값의 개수
-					totalpages = (totalrows - 1) / maxrows + 1;		
+					totalrows = name.size();						//name Vector에 저장된 값의 개수  -> 총 row의 개수와 같은 말
+					totalpages = (totalrows - 1) / maxrows + 1;		// 페이지의 총 개수가 나온다.
 					startrow = (where - 1) * maxrows;				//현재 페이지의 시작 레코드 번호
 					endrow = startrow + maxrows - 1;				//현재 페이지의 마지막
 					
-					out.println("========maxrow: 3일 때==========");
+				/* 	out.println("========maxrow: 3일 때==========");
 					out.println("총 레코드 수: " + totalrows +"<p>");
 					out.println("현재 페이지: " + where +"<p>");	
 					out.println("시작 레코드" + startrow + "<p>");
 					out.println("마지막 레코드"+endrow + "<p>");
-					
+					 */
 					
 					
 					if (endrow >= totalrows)
 						endrow = totalrows - 1;
 
-					/* totalgroup = (totalpages - 1) / maxpages + 1;
-					out.println("토탈페이지그룹 "+totalgroup + "<p>");
-					 */
+					totalgroup = (totalpages - 1) / maxpages + 1;
+					//out.println("토탈페이지그룹 "+totalgroup + "<p>");
+					 
 					if (endpage > totalpages)
 						endpage = totalpages;
 
@@ -204,26 +204,34 @@
 							out.println("<TR bgcolor='#FFFFFF' onMouseOver=\" bgColor= '#DFEDFF'\" onMouseOut=\"bgColor=''\">");
 						} else {
 							out.println("<TR bgcolor='#F4F4F4' onMouseOver=\" bgColor= '#DFEDFF'\" onMouseOut=\"bgColor='#F4F4F4'\">");
-						}	//마우스 오버 했을 때 배경 색 넣기
+						}	//마우스 오버 했을 때 배경 색 넣고 아웃하면 원래 색으로 돌아오기
 						out.println("<TD align=center>");
 						out.println(id + "</TD>");
 						out.println("<TD>");
+						
+						//step: 글의 깊이
+						//	0 : 원본글
+						//  1 : 답변글
+						//  2 : 답변의 답변글
+						//  3 : 답변의 답변의 답변글
+
+						
 						int stepi = ((Integer) step.elementAt(j)).intValue();
 						int imgcount = j - startrow;
-						if (stepi > 0) {
+						if (stepi > 0) {	//-> 답변글
 							for (int count = 0; count < stepi; count++)
-								out.print("&nbsp;&nbsp;");
+								out.print("&nbsp;&nbsp;");		//답변글 -> 맨 앞 공백 두 칸 처리
 							out.println("<IMG name=icon" + imgcount + " src=image/arrow.gif>");
-							out.print("<A href=freeboard_read.jsp?id=");
-							out.print(keyid.elementAt(j) + "&page=" + where);
-							out.print(" onmouseover=\"rimgchg(" + imgcount + ",1)\"");
+							out.print("<A href=freeboard_read.jsp?id=");			//눌렀을 때 링크 처리 
+							out.print(keyid.elementAt(j) + "&page=" + where);		//anchor tag href = 파일이름?컬럼= &컬럼= 형식
+							out.print(" onmouseover=\"rimgchg(" + imgcount + ",1)\"");	//함수 매개변수로 1,2 토글 변수 -> 멘 으; javascript 부분에 함수 있음
 							out.print(" onmouseout=\"rimgchg(" + imgcount + ",2)\">");
-						} else {
-							out.println("<IMG name=icon" + imgcount + " src=image/close.gif>");
-							out.print("<A href=freeboard_read.jsp?id=");
+						} else {		// -> 원본글
+							out.println("<IMG name=icon" + imgcount + " src=image/close.gif>");		//얘는 왜 줄바꿈? -> 줄바꿈하니까 한 칸 떨어지네
+							out.print("<A href=freeboard_read.jsp?id=");			//눌렀을 때 링크 처리
 							out.print(keyid.elementAt(j) + "&page=" + where);
 							out.print(" onmouseover=\"imgchg(" + imgcount + ",1)\"");
-							out.print(" onmouseout=\"imgchg(" + imgcount + ",2)\">");
+							out.print(" onmouseout=\"imgchg	(" + imgcount + ",2)\">");
 						}
 						out.println(subject.elementAt(j) + "</TD>");
 						out.println("<TD align=center>");
@@ -283,22 +291,21 @@
 			<FORM method="post" name="msgsearch" action="freeboard_search.jsp">
 				<TABLE border=0 width=600 cellpadding=0 cellspacing=0>
 					<TR>
-						<TD align=right width="241"><SELECT name=stype>
-								<OPTION value=1>이름
-								<OPTION value=2>제목
-								<OPTION value=3>내용
-								<OPTION value=4>이름+제목
-								<OPTION value=5>이름+내용
-								<OPTION value=6>제목+내용
-								<OPTION value=7>이름+제목+내용
-						</SELECT></TD>
+						<TD align=right width="241">
+							<SELECT name=stype>	
+									<OPTION value=1>이름
+									<OPTION value=2>제목
+									<OPTION value=3>내용
+									<OPTION value=4>이름+제목
+									<OPTION value=5>이름+내용
+									<OPTION value=6>제목+내용
+									<OPTION value=7>이름+제목+내용
+							</SELECT>
+						</TD>
 						<TD width="127" align="center"><INPUT type=text size="17"
-							name="sval"></TD>
-						<TD width="115">&nbsp;<a href="#" onClick="check();"><img
-								src="image/serach.gif" border="0" align='absmiddle'></A></TD>
-						<TD align=right valign=bottom width="117"><A
-							href="freeboard_write.htm"><img src="image/write.gif"
-								border="0"></TD>
+name="sval"></TD>
+						<TD width="115">&nbsp;<a href="#" onClick="check();"><img src="image/serach.gif" border="0" align='absmiddle'></A></TD>
+						<TD align=right valign=bottom width="117"><A href="freeboard_write.htm"><img src="image/write.gif" border="0"></TD>
 					</TR>
 				</TABLE>
 			</FORM>

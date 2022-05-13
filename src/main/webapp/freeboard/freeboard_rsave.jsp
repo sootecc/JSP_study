@@ -56,10 +56,10 @@ request.setCharacterEncoding("UTF-8");
 		rnum = rs.getInt(1) + 1;
 		}
 		sql = "insert into freeboard(id,name,password,email,subject,";
-		sql = sql + "content,inputdate,masterid,readcount,replynum,step)";
-		sql = sql + " values(" + id + ", '" + na + "','" + pw + "','" + em;
-		sql = sql + "','" + sub + "','" + cont + "','" + ymd + "'," + mid + ",";
-		sql = sql + "0," + rnum + "," + step + ")";
+		sql += "content,inputdate,masterid,readcount,replynum,step)";
+		sql += " values(" + id + ", '" + na + "','" + pw + "','" + em;
+		sql += "','" + sub + "','" + cont + "','" + ymd + "'," + mid + ",";
+		sql += "0," + rnum + "," + step + ")";
 	
 		cnt = st.executeUpdate(sql);
 		st.close();
