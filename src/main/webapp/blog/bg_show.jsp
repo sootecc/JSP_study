@@ -23,7 +23,6 @@
 			Vector email = new Vector();		//메일주소
 			Vector subject = new Vector();		//제목
 			Vector content = new Vector();
-			Vector keyid = new Vector();		//DB의 id 컬럼의 값을 저장하는 Vector
 			
 			//페이징 처리 시작 부분
 			
@@ -80,7 +79,7 @@
 			try {
 				//답변글이 존재하는 테이블을 출력할 때 정렬을 잘 해서 가져와야 한다.
 				st = conn.createStatement();
-				String sql = "select * from guestboard order by id desc";
+				String sql = "select * from guestboard order by inputdate desc";
 
 				rs = st.executeQuery(sql);
 				
@@ -91,7 +90,6 @@
 					do {
 						//DataBase의 값을 가져와서 각각의 Vector에 저장
 						
-						keyid.addElement(new Integer(rs.getInt("id")));		
 									//rs의 id컬럼 값을 가져와서 vector에 저장
 						name.addElement(rs.getString("name"));
 						email.addElement(rs.getString("email"));
@@ -122,11 +120,6 @@
 					for (int j = startrow; j <= endrow; j++) {
 						
 						id = totalrows - j;
-					
-						
-						int imgcount = j - startrow;
-						
-						
 						
 							out.println("<table width='600' cellspacing='0' cellpadding='2' >");
 						   out.println("<tr>");

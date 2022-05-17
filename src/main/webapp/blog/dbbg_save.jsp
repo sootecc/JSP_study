@@ -51,7 +51,7 @@ request.setCharacterEncoding("EUC-KR");
 		cnt = st.executeUpdate(sql);
 
 	} catch (SQLException e) {
-		out.println(e);
+		out.println(e.getMessage());
 	} finally {
 		if (rs != null)
 			rs.close();

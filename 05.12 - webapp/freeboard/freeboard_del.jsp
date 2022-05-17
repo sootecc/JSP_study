@@ -9,7 +9,7 @@
 	function check () {
 		with(document.msgdel){
 			if ( password.value.length==0){
-				alert ("ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä!!"); 
+				alert ("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½!!"); 
 				password.focus();
 				return false; 
 			}
@@ -19,15 +19,15 @@
 </SCRIPT>
 <link href = "freeboard.css" rel="stylesheet" type = "text/css">
 
-<title>±Û »èÁ¦ ÆäÀÌÁö </title>
+<title>ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ </title>
 </head>
 <body>
-   »èÁ¦ ÆäÀÌÁö ÀÔ´Ï´Ù.
+   ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½.
    
    <center>
    	<form name ="msgdel" method = "post" action = "freeboard_deldb.jsp">
-   		<!-- HTML ÆäÀÌÁö¿¡ Ãâ·ÂÀº ÇÏÁö ¾ÊÀ¸³ª º¯¼öÀÇ °ªÀ» ´Ù¸¥ ÆäÀÌÁö·Î ³Ñ±æ¶§  
-   			id º¯¼ö¿Í page º¯¼öÀÇ °ªÀ» Ã³¸®
+   		<!-- HTML ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ±æ¶§  
+   			id ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ page ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
    		-->
    		<input type="hidden" name = "id" value = "<%= request.getParameter("id") %>"> 
    		<input type="hidden" name = "page" value = "<%= request.getParameter("page") %>">
@@ -36,14 +36,14 @@
    			<tr> <td colspan = "2" bgcolor = "#1f4f8f" height="1"> </td>
    			</tr>
    			<tr> <td colspan = "2" bgcolor = "#DFEDFF" height="20" class = "notice"> 
-   				<b> ±Û »èÁ¦ ÇÏ±â</b> </td>
+   				<b> ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½</b> </td>
    			</tr>
    			<tr>
    				<td clospan = "2" bgcolor = "#1F4F8F" height="1"> </td>
    			</tr>
    			<tr>
    				<td width ="124" height= "30" bgcolor= "#f4f4f4" align ="center" class= "input_style1">
-   					ºñ¹Ð ¹øÈ£ </td>
+   					ï¿½ï¿½ï¿½ ï¿½ï¿½È£ </td>
    				<td width = "494"> <input type="password" name = "password" class = "input_style1">
    				
    				</td>
