@@ -60,14 +60,7 @@
   		   : 요즘은 서블릿을 controller  
   서블릿(Controller) 매핑 설정 :  -->
   
-  <servlet>
-  	<servlet-name>MVCBoardList</servlet-name>
-  	<servlet-class>model2.mvcboard.ListController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>MVCBoardList</servlet-name>
-  	<url-pattern>/MVC_M2/list.do</url-pattern>
-  </servlet-mapping>
+ 
   
   <!-- 서블릿 Controller 매핑 설정  -->
   <servlet>
@@ -83,15 +76,27 @@
   </servlet-mapping>
   
   
+  <!-- MVCBoard 글 목록 보기 Controller 매핑-->
+   <servlet>
+  	<servlet-name>MVCBoardList</servlet-name>
+  	<servlet-class>model2.mvcboard.ListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MVCBoardList</servlet-name>
+  	<url-pattern>/mvcboard/list.do</url-pattern>
+  </servlet-mapping>
   
   
+  <!-- 페이징 처리를 위한 설정(변수값 할당) 출력레코드 수 : 10개, 페이지 수 : 5개-->
+  	<context-param>
+	  	<param-name>POSTS_PER_PAGE</param-name>
+	  	<param-value>10</param-value>
+	</context-param>  
   
-  
-  
-  
-  
-  
-  
+  	<context-param>
+	  	<param-name>PAGES_PER_BLOCK</param-name>
+	  	<param-value>5</param-value>
+	</context-param>  
   
   
   
